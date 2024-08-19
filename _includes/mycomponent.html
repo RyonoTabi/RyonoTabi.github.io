@@ -1,0 +1,76 @@
+<style>
+    .toolti {
+      display: none;
+      position: absolute;
+      background-color: #333;
+      color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  
+    .tooltip-trigger:hover + .toolti,
+    .tooltip-trigger:active + .toolti {
+      display: block;
+    }
+  </style>
+  <span class="tooltip-trigger">Tap me</span>
+  <span class="toolti">Tooltip content</span>
+
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>
