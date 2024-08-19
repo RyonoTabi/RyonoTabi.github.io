@@ -1,21 +1,32 @@
+<span class="toolti">Hover me</span>
+<p>四分[ぶん]<span class="toolti">の</span><span class="toolti">Particule</span>三周[しゅう]分[ぶん]
+    <span class="toolti">ほど</span><span class="toolti">Test</span>階段[かいだん]をおりると</p>
 <style>
-    .toolti {
-      display: none;
-      position: absolute;
-      background-color: #333;
-      color: #fff;
-      padding: 5px;
-      border-radius: 5px;
-    }
-  
-    .tooltip-trigger:hover + .toolti,
-    .tooltip-trigger:active + .toolti {
-      display: block;
-    }
-  </style>
-  <span class="tooltip-trigger">Tap me</span>
-  <span class="toolti">Tooltip content</span>
+.toolti {
+  position: relative;
+  cursor: pointer;
+  text-decoration: underline;
+}
 
+.toolti::after {
+  content: "This is the tooltip content";
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  display: none;
+  z-index: 10;
+}
+
+.toolti:hover::after {
+  display: block;
+}
+</style>
 
 
 
