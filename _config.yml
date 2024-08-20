@@ -14,12 +14,12 @@ timezone:
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Ressources-JP # the main title
+title: Ryo No Tabi # the main title
 
 tagline: 急がば回れ # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  Un blog de ressources pour apprendre le japonais sans tryhard.
+  Un blog pour apprendre le japonais sans tryhard.
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
