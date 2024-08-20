@@ -9,7 +9,7 @@ order: 4
 
 Salut, c'est Ryo !
 
-Je propose des lectures guidées de tous niveaux où je fournis des explications grammaticales et sémantiques à un texte. 
+Vous trouverez ici des lectures guidées de tous niveaux où je fournis des explications grammaticales et sémantiques. 
 
 Le but étant de renforcer vos connaissances et de vous donner des outils d'analyse qui débloqueront votre compréhension.
 
