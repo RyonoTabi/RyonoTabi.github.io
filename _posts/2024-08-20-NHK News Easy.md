@@ -1,4 +1,5 @@
 ---
+title: NHK News Easy n°1
 date: 2024-08-19 14:49
 tags: 日本語 NHK
 ---
