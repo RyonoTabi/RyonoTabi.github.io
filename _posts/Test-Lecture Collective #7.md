@@ -1,6 +1,6 @@
 ---
-date: 2024-08-19 14:49 -500
-categories: lecture "texte pour débutant"
+date: 2024-08-19 14:49
+categories: lecture lecture-collective
 tags: [日本語]
 ---
 
@@ -41,6 +41,7 @@ tags: [日本語]
 
 **どうしたら**[^19]、この苦しい恋を忘れられますか？
 
+---
 
 [^1]: Explication
 [^2]: 'Forme en て soutenue' de する, équivaut à して

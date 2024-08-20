@@ -1,0 +1,3 @@
+
+{% include mycomponent.html %}
+
