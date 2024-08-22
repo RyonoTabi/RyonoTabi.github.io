@@ -1,0 +1,116 @@
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.1em;
+            line-height: 2.3;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+    </style>
+<h1>長野[ながの]県[けん]<span class="tti" dt="Particule の de qualification. AのB = A qualifie B. 'Les chutes du département de Nagano'.">の</span>滝[たき]　「涼[すず]しく<span class="tti" dt="La forme en て, ici, indique la cause. 'Il fait frais, donc c'est top !'.">て</span>最高[さいこう]です </h1>
+<br>
+<img src="https://www3.nhk.or.jp/news/html/20240820/K10014554091_2408201941_0820194947_02_01.jpg" alt="NHK News" style="width: auto; height: 300px;">
+<p>長野[ながの]県[けん]の <span class="tti" dt="Quand un verbe (ある) précède un nom, on obtient une 'proposition déterminante', càd que le verbe et ce qui le précède vont apporter des infos sur le nom. 'Les chutes de Karasawa qui sont dans le plateau de Sugadaira.'">菅平[すがだいら]高原[こうげん]にある「唐沢[からさわ]の滝[たき]」</span>は、<span class="tti" dt="Mettre さ à la fin d'un adjectif en -い, le transforme en nom. (高い) Grand -> (高さ) Grandeur.">高[たか]さ</span>15m<span class="tti" dt="ぐらい ou くらい signifient 'Environ'.">ぐらい</span>の所[ところ]から水[みず]が落[おち]ち<span class="tti" dt="Verbe à la forme en て + くる = Le verbe se produit et se rapproche de nous. Ici, on pourrait traduire par 'Tomber VERS NOUS'.">てきます</span>。毎年[まいとし]夏[なつ]に<span class="tti" dt="は d'emphase. '(Particulièrement) l'été'.">は</span>、涼[すず]しさを感[かん]じる<span class="tti" dt="Afin de... (soutenu)">ために</span>、たくさんの人が来[き]ます。</p>
+<p>20日は 大学生[だいがくせい]や家族[かぞく]<span class="tti" dt="'Etc.'">など</span>が、滝[たき]<span class="tti" dt="Permet de faire une liste non-exhaustive. 'A, b, c, etc.'">や</span>川[かわ]で遊[あそ]ん<span class="tti" dt="Verbe + たり～たりする. Indique un enchaînement d'actions. 'J'ai fait verbe A, B, C, etc.'">だり</span>、 写真[しゃしん]を 撮[と]っ<span class="tti" dt="～たりしていました clos l'enchaînemnt commencé par le premier たり. (voir note précédente). Quant au ていました, on peut le voir comme de l'imparfait.">たりしていました</span>。 <span class="tti" dt="Proposition déterminante (voir première phrase). Ici, 'L'eau qui tombe (vers nous)'.">落[お]ちてくる水[みず]</span>の下[した]に立[た]<span class="tti" dt="V＋たり～たりする enchaînement d'actions. ">ったり</span>、 川[かわ]の中[なか]に入[はい]ったりして楽[たの]しんでいる人<span class="tti" dt="particule de similitude. 'également'">も</span>いました。</p>
+<p>大学生[だいがくせい]は「とても 涼[すず]しくて、 最高[さいこう]です」<span class="tti" dt="Particule de citation. Utilisé avec les verbes de paroles (dire, penser, etc.)">と</span> 話[はな]しました。 別[べつ]の人は「 気持[きも]ちがいい<span class="tti" dt="'Vu que...'">ので</span>、ずっとここに<span class="tti" dt="いる ('être') en forme -たい (Vouloir Verbe), (lit.)  'Vouloir être'. Ici, c'est plutôt 'Vouloir rester'.".>いたい</span>です」と 話[はな]していました。</p>
+
+
+
+<a href="https://www3.nhk.or.jp/news/easy/k10014554091000/k10014554091000.html">Source</a>
+
+<style>
+.tti {
+  position: relative;
+  cursor: pointer;
+  
+  text-decoration: underline;
+  color:rgb(28, 122, 156);
+}
+
+.tti::after {
+  content: attr(dt);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+ word-wrap: break-word;
+  white-space: normal;
+  display: none;
+  z-index: 10;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.ttis::after {
+    min-width: auto;
+    max-width: none;
+}
+
+.tti:hover::after {
+  display: block;
+}
+</style>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>
