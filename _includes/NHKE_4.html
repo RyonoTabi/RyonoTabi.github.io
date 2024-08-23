@@ -1,0 +1,115 @@
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.1em;
+            line-height: 2.2;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+
+    </style>
+<h1>車のチャイルドシート「安全の<span class="tti" dt="'Pour (la sécurité)'">ため</span>6歳以上の子供も使<span class="tti" dt="Impératif. 'Utilisez !'.">って</span>」</h1>
+
+<br>
+<img src="https://www3.nhk.or.jp/news/html/20240821/K10014554701_2408211414_0821150228_02_03.jpg" alt="NHK News" style="width: auto; height: 300px;">
+
+<p>福岡[ふくおか]市[し]で今月[こんげつ]、バスと車[くるま]の事故[じこ]で、車[くるま]に乗[の]っていた7歳[さい]と5歳[さい]の子供[こども]が亡[な]くなりました。2人はシートベルトをしていました<span class="tti" dt="が ici exprime l'opposition : 'Mais'.">が</span>、子ども用[よう]のチャイルドシートやジュニアシート<span class="tti" dt="は de contraste. 'Ils avaient une ceinture oui, mais c'était PAS celle pour enfants...'.">は</span>使[つか]っていませんでした。警察[けいさつ]は、車[くるま]がぶつかった<span class="tti" dt="Verbe au Passé＋とき = 'Quand X a eu lieu'.">とき</span>、2人がシートベルトでおなかを<span class="tti" dt="Adjectif en -い + く. L'adjectif devient adverbe. Ici, 'Fort' -> 'Fortement'.">強[つよ]く</span>押さ<span class="tti" dt="押す est au passif. 'Presser' -> 'Etre pressé par qqc'. Ici, c'est plutôt 'être écrasé'.">れて</span>亡[な]くなった<span class="tti" dt="と　de citation. Utilisé avec les verbes de paroles (dire, penser, etc.) pour introduire une pensée/des paroles.">と</span>考[かんが]えています。</p>
+<p>法律[ほうりつ]<span class="tti" dt="Ici, では signifie : 'Selon la loi...' ou plus littéralement 'Dans la loi...'">では</span>、チャイルドシートを使[つか]わ<span class="tti" dt="Tout ça signifie 'Devoir'. Ici, 'Devoir utiliser'.">なければならない</span>*<span class="tti" dt="のは～です = 'C'est X qui...'. Ici, 'C'est les enfants de 6 ans qui doivent...'">のは</span>5歳[さい]<span class="tti" dt="'Jusqu'à'">まで</span>です。しかし、日本[にほん]自動車[じどうしゃ]連盟[れんめい]<span class="tti" dt="'Selon...'. Ici, 'Selon la Japan Automobile Federation...'">によると</span>、6歳[さい]以上[いじょう]<span class="tti" dt="Ici, signifie 'Même'.'Même les enfants de + de 6 ans.'">でも</span>体が小[ちい]さい子どもがシートベルトをする<span class="tti" dt=" du conditionnel. 'Quand/Si...'">と</span>、事故[じこ]の強い力で首やおなかを強く押[お]される危険[きけん]があります。</p>
+<p>日本[にほん]自動車[じどうしゃ]連盟[れんめい]は「シートベルトは、腰[こし]の骨[ほね]にかかるのが正[ただ]しい使[うか]い方[かた]です。ベルトが首[くび]やおなかにかからない<span class="tti" dt="V＋ようにする = 'Faire en sorte de...' Ici, 'Faites en sorte de ne pas mettre la ceinture...'">ようにして</span>ください」と<span class="tti" dt="Pourquoi pas '言います' ? C'est simple, 言っている s'utilise pour transmettre une information, là où 言います est une simple citation.">言っています</span>。そして、背[せ]が150cm<span class="tti" dt="AよりB = A est moins que B.">より</span>低[ひく]い子ども<span class="tti" dt="は de contraste.'Ces enfants particulièrement...'">は</span>、6歳以上[いじょうう]でもチャイルドシート<span class="tti" dt="'etc.'">など</span>を使う<span class="tti" dt="'Dire (à qqn) de faire qqc.' Si on voulait utiliser le と de citation : 「チャイルドシートなどを使ってください」と言う.">ように言う</span>ことを決[き]めました。</p>
+<a href="https://www3.nhk.or.jp/news/easy/k10014554701000/k10014554701000.html">Source</a>
+
+<style>
+.tti {
+  position: relative;
+  cursor: pointer;
+  
+  text-decoration: underline;
+  color:rgb(28, 122, 156);
+}
+.tti::after {
+  content: attr(dt);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+ word-wrap: break-word;
+  white-space: normal;
+  display: none;
+  z-index: 10;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.ttis::after {
+    min-width: auto;
+    max-width: none;
+}
+
+.tti:hover::after {
+  display: block;
+}
+</style>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>
