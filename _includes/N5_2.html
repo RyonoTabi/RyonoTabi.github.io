@@ -1,0 +1,121 @@
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+    </style>
+
+<img src="//i0.wp.com/j-nihongo.com/wp-content/uploads/2021/12/bus_stand.png?resize=191%2C300&ssl=1" alt="Arrêt de bus">
+
+<p>今日[きょう]、 図書館[としょかん]<span class="tti" dt="Particule de ciblage. Avec un verbe de déplacement, indique la direction.">に</span> 行[い]きました。 図書館[としょかん]は 駅[えき]<span class="tti" dt="Particule du point de départ. 'A partir de...'">から</span>バス<span class="tti" dt="Particule du moyen. 'En bus'">で</span>15 分[ふん]<span class="tti" dt="くらい・ぐらい = 'Environ'">ぐらい</span>です。 </p>
+<p>私[わたし]は 駅[えき]<span class="tti" dt="Aの前 : Devant A">の 前[まえ]</span>のバス 停[てい]<span class="tti" dt="Particule du lieu d'action. Ici, l'action c'est 待ちました (attendre).">で</span>、バス<span class="tti" dt="Particule du COD.">を</span> 待[ま]ちました。</p>
+<p>バスはいつも11 時[じ]15 分[ふん]<span class="tti" dt="Particule du ciblage temporel absolu. Indique une heure, jour, mois précis.">に</span> 来[き]ます。 遅[おく]れません。</p>
+<p><span class="tti" dt="Conjonction d'opposition. 'Mais'">でも</span>、 今日[きょう]<span class="tti" dt="Particule de contraste. Aujourd'hui (et pas un autre un jour)">は</span>11 時[じ]20 分でした<span class="tti" dt="Particule d'opposition. 'Mais'">が</span>、バスはまだ 来[き]ませんでした。</p>
+<p>私[わたし]は「どうして？」<span class="tti" dt="Particule de citation. Avec un verbe de parole introduit des paroles ou pensées.">と</span> 思[おも]いました。 </p>
+<p>私[わたし]の 後[うし]ろにいたおばあさん<span class="tti" dt="Particule de ciblage. Elle va avec le verbe 聞きました (demander). Ici, 'Demander à la vieille dame'">に</span>「バスはいつ 来[き]ますか？」と <span class="tti" dt="聞く peut signifier 'Ecouter', mais aussi 'Demander' comme ici.">聞[き]きました</span>。</p>
+<p>おばあさんは「 今日[きょう]は 土曜日[どようび]です<span class="tti" dt="Particule de cause. 'Vu que...'">から</span>、バスは11 時[じ]25 分[ふん]に 来[き]ます<span class="tti" dt="Particule finale utilisée pour informer l'interlocuteur d'une nouvelle/importante info">よ</span>。」と 言[い]いました。</p>
+<p>私[わたし]は「ありがとうございます。」と 言[い]いました。 </p>
+<p>安心[あんしん]しました。バスは11 時[じ]25 分[ふん]に 来[き]ました。 遅[おく]れませんでした。 </p>
+<p>私[わたし]はバス<span class="tti" dt="Particule de ciblage. Ici, 'monter DANS le bus'">に</span> 乗[の]って 図書館[としょかん]に 行[い]きました。</p>
+
+<a href="https://j-nihongo.com/n5level_toshokanniiku_bus/">Source</a>
+
+<style>
+.tti {
+  position: relative;
+  cursor: pointer;
+  
+  text-decoration: underline;
+  color:rgb(28, 122, 156);
+}
+
+.tti::after {
+  content: attr(dt);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+ word-wrap: break-word;
+  white-space: normal;
+  display: none;
+  z-index: 10;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.ttis::after {
+    min-width: auto;
+    max-width: none;
+}
+
+.tti:hover::after {
+  display: block;
+}
+</style>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>

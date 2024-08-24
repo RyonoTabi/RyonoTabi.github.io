@@ -1,0 +1,121 @@
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+    </style>
+
+<img src="https://i0.wp.com/j-nihongo.com/wp-content/uploads/2021/12/otoshimono_saifu.png?resize=300%2C300&ssl=1" alt="Fauché">
+
+<p>昨日[きのう]、カナさん<span class="tti ttis" dt="Ensemble">と 一緒[いっしょ]に</span>レストラン<span class="tti" dt="Particule de ciblage. Avec un verbe de déplacement indique la direction. 'Aller AU restaurant'">に</span> 行[い]きました。</p>
+<p>サラダ<span class="tti" dt="Liste exhaustive. AとB = 'Il y a A et B (c'est tout)'">と</span> 魚[さかな]<span class="tti" dt="Particule de qualification. AのB = B est décrit par A. Ici, 'Un plat de poissons et de salade'">の</span> 料理[りょうり]<span class="tti" dt="Particule du COD.">を</span> 食[た]べました。</p>
+<p>とてもおいしかったです。お 酒[さけ]<span class="tti" dt="Particule de similitude. 'Aussi'">も</span> 飲[の]ん<span class="tti" dt="(Conjugaison) Forme て. Ici, indique la cause. 'Vu que j'ai également bu du saké, j'étais légèrement ivre'">で</span>、 少[すこ]し 酔[よ]っ 払[ぱら]いました。 </p>
+<p>楽[たの]しかったです<span class="tti" dt="Particule d'opposition. 'Mais'.">が</span>、 私[わたし]は 財布[さいふ]<span class="tti" dt="Particule du COD">を</span> 家[いえ]<span class="tti" dt="Particule de ciblage. 'J'ai perdu mon porte-feuille DANS ma maison'">に</span> 忘[わす]れました。</p>
+<p><span class="tti" dt="Conjonction de cause. 'C'est pourquoi'">だから</span>カナさん<span class="tti" dt="Particule du sujet. Ici, elle met l'emphase sur ce dernier. 'C'EST Kana QUI a payé'">が</span>お 金[かね]を 払[はら]いました。とても 恥[は]ずかしかったです。</p>
+<p>カナさん、ごめんなさい。
+
+<a href="https://j-nihongo.com/n5level_saifuwowasurete_gomennasai/">Source</a>
+
+<style>
+.tti {
+  position: relative;
+  cursor: pointer;
+  
+  text-decoration: underline;
+  color:rgb(28, 122, 156);
+}
+
+.tti::after {
+  content: attr(dt);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+ word-wrap: break-word;
+  white-space: normal;
+  display: none;
+  z-index: 10;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.ttis::after {
+    min-width: auto;
+    max-width: none;
+}
+
+.tti:hover::after {
+  display: block;
+}
+</style>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>
