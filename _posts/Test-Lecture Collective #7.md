@@ -1,6 +1,6 @@
 ---
 date: 2024-08-19 14:49
-categories: lecture lecture-collective
+categories: lecture
 tags: [日本語]
 ---
 
