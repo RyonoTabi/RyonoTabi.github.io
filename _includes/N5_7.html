@@ -1,0 +1,128 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+    </style>
+<h1>マンガ喫茶</h1>
+
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGXnuDoH0eEq6wiPtzw3LYrgpbFstA-9QXF94yCsUFO5JctFoWycyIF-xbQMhrUzQtjGYb-pN2lhasXt5CKMGW5P0XtDkYpeHocIpZhGD8VTOGm7JczKV6Q7nxLMBD6R4LgsVt72k-hbU/s800/building_manga_kissa.png" alt="Manga kissaten" style="width: auto; height: 300px;">
+
+
+<p>今日[きょう]は、休み[やす]の日[ひ]でした<span class="tti" dt="AからB = Vu que A, B">から</span>、<span class="tti" dt="(Faire) tout seul">一人[ひとり]で</span>マンガ喫茶[きっさてん]に行[い]きました。</p>
+
+<p>マンガ喫茶[きっさてん]<span class="tti" dt="Particule du lieu d'existence. Ici, indique l'endroit où existe les mangas. S'utilise majoritairement avec いる・ある.">には</span>、たくさんマンガがあります。</p>
+
+<p>1時間[いちじかん]400円[えん]ぐらいです。</p>
+
+<p>私はマンガ喫茶[きっさてん]で、マンガを読[よ]ん<span class="tti" dt="Verbe + たり～たりする = Liste d'actions non-exhaustives. 'J'ai fait A, B, C, etc.' sans ordre particulier.">だり、コーヒーを飲[の]んだりしました</span>。</p>
+
+<p>コーヒーは無料[むりょう]です。</p>
+
+<p>パソコン<span class="tti" dt="Particule de similitude. 'Aussi'.">も</span>ありますから、パソコン<span class="tti" dt="Particule du moyen. 'Avec l'ordinateur, j'ai regardé...'">で</span>新[あ]しい映画[えいが]を見[み]ました。</p>
+
+<p>いい休[やす]みでした。</p>
+
+<br>
+<a href="">Source</a>
+
+<style>
+.tti {
+  position: relative;
+  cursor: pointer;
+  
+  text-decoration: underline;
+  color:rgb(28, 122, 156);
+}
+
+.tti::after {
+  content: attr(dt);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+ word-wrap: break-word;
+  white-space: normal;
+  display: none;
+  z-index: 10;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.ttis::after {
+    min-width: auto;
+    max-width: none;
+}
+
+.tti:hover::after {
+  display: block;
+}
+</style>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>
