@@ -1,0 +1,122 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+    </style>
+<h1>海<span class="tti" dt="Particule du lieu d'action. 'Nager à la plage'.">で</span>泳ぎました</h1>
+
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnuX2ihX7U7knntfq_0F-9XBGMecTsPULAaNSxA51UyPH0_aQ5_zSync1P_-OOS9ZGmHsF-xtj_1u90-bHunWwJb6kC2Ri4HodmXldsn5yMubDEoAKMp2tCRyWGUnaCP-Nzx1f7YiBkjwt/s400/beach_parasol.png" alt="La plage" style="width: auto; height: 300px;">
+
+
+<p>今日[きょう]は海[うみ]の日[ひ]でした。</p>
+<p>だから、友達[ともだち]<span class="tti" dt="Particule d'accompagnement. 'Je suis parti à la plage AVEC mes amis.'">と</span>海[うみ]<span class="tti" dt="particule de ciblage. Indique la direction/le point d'arrivé avec les verbes de déplacements.">に</span>行[い]きました。</p>
+<p>海[うみ]<span class="tti" dt="Xまで = 'Jusqu'à X'">まで</span>車[くるま]<span class="tti" dt="Particule du moyen. 'On est allés jusqu'à la plage EN voiture'.">で</span>行[い]きました。</p>
+<p>車[くるま]<span class="tti" dt="Particule du thème. 'Je vais vous parler de la voiture : ...'">は</span>日本人[にほんじん]の友達[ともだち]<span class="tti" dt="Particule du sujet. Ici, elle met l'emphase sur lui. 'C'EST mon ami QUI...'">が</span>運転[うんてん]しました。</p>
+<p>海[うみ]は青[あお]<span class="tti" dt="(Conjugaison) La forme en て d'un adjectif en -い. Ici, permet de lister des adjectifs. 'La mer est bleu ET propre/belle.'.">くて</span>、きれいでした。</p>
+<p>1時間[いちじかん]<span class="tti" dt="Environ">ぐらい</span>泳[およ]ぎました。</p>
+<p>とても疲[つか]れました<span class="tti" dt="Conjonction d'opposition. 'Mais...'">が</span>、楽[たの]しかったです。</p>
+
+<br>
+<a href="https://j-nihongo.com/n5level_umide_oyogimashita/">Source</a>
+
+<style>
+.tti {
+  position: relative;
+  cursor: pointer;
+  
+  text-decoration: underline;
+  color:rgb(28, 122, 156);
+}
+
+.tti::after {
+  content: attr(dt);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+ word-wrap: break-word;
+  white-space: normal;
+  display: none;
+  z-index: 10;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.ttis::after {
+    min-width: auto;
+    max-width: none;
+}
+
+.tti:hover::after {
+  display: block;
+}
+</style>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>
