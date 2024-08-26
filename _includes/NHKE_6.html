@@ -1,0 +1,122 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.1em;
+            line-height: 2.2;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+    </style>
+
+
+<h1>幽霊[ゆうれい]<span class="tti" dt="X のように + Verbe = 'Faire comme A'. Ici, 'Nager comme un fantôme'.">のように</span>泳[およ]ぐ魚[さかｎ]などを紹介[しょうかい]　「涼[すず]しい気分[きぶん]になって」</h1>
+
+<img src="https://pbs.twimg.com/card_img/1826489443676815360/vDuGDfhu?format=jpg&name=small" alt="NHK News" style="width: auto; height: 300px;">
+<p>日本では、幽霊[ゆうれい]など怖[こわ]いものを見ると涼[すず]しくなる<span class="tti" dt="(Conjugaison) 言う est au passif. Ici, 'On dit que...'">と言われています</span>。</p><p>毎日暑い中、鳥取[とっとり]市[し]にある「とっとり賀露[かろ]かにっこ館[かん]」では、幽霊[ゆうれい]<span class="tti" dt="Xのように見える = Ressembler à X/Sembler comme X">のように見える</span>魚などを紹介するイベントを開いています。</p>
+
+<p>イベントでは、5種類[しゅるい]の魚などを見る<span class="tti" dt="Verbe + ことができる = 'Pouvoir VERBE'. Ici, 'Pouvoir voir'.">ことができます</span>。「ブラックゴースト」という魚[さかな]は、黒い体で幽霊[ゆうれい]のように揺[ゆ]れて泳[およ]ぎます。「トランスルーセントグラスキャット」は、体が透[す]き通[とお]っていて、骨[ほね]が見えます。</p>
+
+<p>施設[しせつ]の人[ひと]は「家族[かぞく]と一緒[いっしょ]に来て、少[すこ]しでも涼[すず]しい気分[きぶん]になってほしいです」と話[はな]していました。</p>
+
+<p>このイベントは、9月[くがつ]2日[ふつか]まで行[おこな]っています。</p>
+
+
+<a href="https://www3.nhk.or.jp/news/easy/k10014548921000/k10014548921000.html">Source</a>
+
+<style>
+    .tti {
+      position: relative;
+      cursor: pointer;
+      
+      text-decoration: underline;
+      color:rgb(28, 122, 156);
+    }
+    
+    .tti::after {
+      content: attr(dt);
+      position: absolute;
+      background-color: #333;
+      color: #fff;
+      font-size: 0.8em;
+      padding: 5px;
+      border-radius: 5px;
+      top: 100%; /* Position below the text */
+      left: 50%;
+     word-wrap: break-word;
+      white-space: normal;
+      display: none;
+      z-index: 10;
+      min-width: 250px;
+      max-width: 500px;
+    }
+    
+    .ttis::after {
+        min-width: auto;
+        max-width: none;
+    }
+    
+    .tti:hover::after {
+      display: block;
+    }
+    </style>
+    
+    
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                    acceptNode: function (node) {
+                    return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                    },
+                },false);
+    
+                let node;
+                const textNodes = [];
+                while (node = walker.nextNode()) {
+                    textNodes.push(node);
+                    console.log(node.nodeValue);   
+                }
+    
+                const segmenter = new TinySegmenter();   
+                for(const node of textNodes)
+                {
+                    const segs = segmenter.segment(node.nodeValue);
+                    console.log((segs.join(" | ")));
+                    const newText = segs.reduce((acc, curr, i, arr) => {
+                        const prev_token = (i > 0) ? arr[i-1]:"";
+                        if(curr == '[')
+                        {
+                            acc += `<ruby>${prev_token}<rt>`;
+                        }
+                        else if(prev_token == '[')
+                        {
+                            /* We do nothing */
+                        } 
+                        else if(curr == ']')
+                        {
+                            acc += `${prev_token}</rt></ruby>`;
+                        }
+                        else if(i == arr.length - 1){
+                            acc += ((prev_token!=']')?prev_token:"") + curr ;
+                        } 
+                        else {
+                            acc += ((prev_token!=']')?prev_token:"");
+                        }
+                        return acc;
+    
+                    }, "");
+    
+                    if(newText != node.nodeValue)
+                    {
+                        let span = document.createElement('span');
+                        span.innerHTML = newText;
+    
+                        node.parentNode.replaceChild(span, node);
+                    }
+                }
+            });
+</script>
