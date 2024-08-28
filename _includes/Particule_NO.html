@@ -1,0 +1,174 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+        h4 {
+    border-left-width: 4px;
+    border-style: solid;
+    margin-bottom: 1.25rem;
+    margin-top: 10.5rem;
+    --tw-border-opacity: 1;
+    border-color: rgb(19 29 42 / var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(59 69 82 / var(--tw-bg-opacity));
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 2rem;
+    padding-bottom: .25rem;
+    padding-left: .5rem;
+    padding-top: 0.25rem;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.spoiler{
+    background-color: rgb(212, 212, 212);
+    color: transparent;
+    user-select: none;
+  }
+  
+  .spoiler:hover{
+    background-color: inherit;
+    color: inherit;
+  }
+    </style>
+
+<h4>Indique une description. (A<u style="color: red;">の</u>B = A décrit B)</h4>
+<p>私[わたし]<u style="color: red;">の</u>本[ほん]。皮[かわ]<u style="color: red;">の</u>かばん。</p>
+<span class="spoiler"><i>« Mon livre. Un cartable en cuir.»</i></span>
+
+<h4>Transforme un verbe en nom (=nominaliser).</h4>
+<p>本[ほん]を読[よ]む<u style="color: red;">の</u>が好[す]きです。</p>
+<span class="spoiler"><i>« J'aime le fait de lire des livres.»</i></span>
+
+<h4>（<b style="color: red;">～のです</b>）Le locuteur explique/pose une question sur une info qu'il partage avec l'interlocuteur. Souvent ce qu'ils ont vu/entendu.</h4>
+
+<p><u>Situation 1</u> : <b>A rentre dans la pièce et VOIT B faire qqc</b></p>
+<p>A: 何[なに]をしている<u style="color: red;">のですか</u>？<i>(A demande à B d'expliquer ce qu'il fait)</i></p>
+<p>B: 日本語[にほんご]を勉強[べんきょう]している<u style="color: red;">のです</u>。</p>
+
+<p><u>Situation 2</u> : <b>A VOIT que B ne boit pas (alors que tout le monde boit)</b></p>
+<p>A: どうして酒[さけ]を飲[の]まない<u style="color: red;">んですか</u>？</p>
+<p>B: 私[わたし]はまで十七[じゅうなな]<u style="color: red;">なのです</u>。</p>
+
+<h4>（<b style="color: red;">～のです</b>）Peut également indiquer l'impératif; ou à montrer sa détermination !</h4>
+<p>1. さ、早[はや]く行[い]く<u style="color: red;">のだ</u>。</p>
+<span class="spoiler"><i>« Allons-y ! »</i></span>
+<p>2. 俺[おれ]がやる<u style="color: red;">のだ</u>！</p>
+<span class="spoiler"><i>« C'est moi qui vais le faire !»</i></span>
+
+<h4>（Souvent <b style="color: red;">～のですが</b>） Une "demande gênante".</h4>
+<p>1. 今日[きょう]バスケがある<u style="color: red;">んですが</u>、一緒[いっしょ]に行[い]きませんか？</p>
+<span class="spoiler"><i>« J'ai basket demain, tu voudrais venir avec moi ?»</i></span>
+<p>2. 先生[せんせい]、困[こま]っている<u style="color: red;">んです</u>。たすけてください。</p>
+<span class="spoiler"><i>« Monsieur (le prof), j'ai un souci. Aidez-moi ! » </i></span>
+
+<h4>（<b style="color: red;">～のだった</b>） Indique le regret. 'J'aurais dû...'</h4>
+<p>もっとお話[はな]しをうかがっておく<u style="color: red;">のだった</u></p>
+<span class="spoiler"><p>« J'aurais dû lui poser plus de questions.»</i></span>
+
+<br>
+<hr>
+<p><b>Source</b> : 『三省堂8』『例解学習11』 『新明解8』 『明鏡3』</p> 
+<p> 『A dictionary of Japanese Grammar』 『(Kodansha) How to tell the difference between Japanese Particles.』</p>
+
+<style>
+.tti {
+  position: relative;
+  cursor: pointer;
+  
+  text-decoration: underline;
+  color:rgb(28, 122, 156);
+}
+
+.tti::after {
+  content: attr(dt);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+ word-wrap: break-word;
+  white-space: normal;
+  display: none;
+  z-index: 10;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.ttis::after {
+    min-width: auto;
+    max-width: none;
+}
+
+.tti:hover::after {
+  display: block;
+}
+</style>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>

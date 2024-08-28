@@ -1,0 +1,177 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+        h4 {
+    border-left-width: 4px;
+    border-style: solid;
+    margin-bottom: 1.25rem;
+    margin-top: 10.5rem;
+    --tw-border-opacity: 1;
+    border-color: rgb(19 29 42 / var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(59 69 82 / var(--tw-bg-opacity));
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 2rem;
+    padding-bottom: .25rem;
+    padding-left: .5rem;
+    padding-top: 0.25rem;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.spoiler{
+    background-color: rgb(212, 212, 212);
+    color: transparent;
+    user-select: none;
+  }
+  
+  .spoiler:hover{
+    background-color: inherit;
+    color: inherit;
+  }
+    </style>
+
+<h4>Indiquer le lieu d'existence.(souvent avec ある・いる)</h4>
+<p>教室[きょうしつ]<u style="color: red;">に</u>いる。</p>
+<span class="spoiler"><i>« être dans la salle de classe.»</i></span>
+
+<img src="https://media.discordapp.net/attachments/402231963479572481/1278229175387295806/image.png?ex=66d00b2f&is=66ceb9af&hm=2e615180475823b2fe657a77bc933bd10143f22a65d64dc4a7c3f18ed544e5d0&=&format=webp&quality=lossless&width=918&height=315" alt="Fauché" style="width: auto; height: auto;">
+<h4>Indique l'heure, le jour, le mois, l'année. (Seulement pour des heures/dates absolus et non-relative)</h4>
+<p>七時[しちじ]<u style="color: red;">に</u>集[あつ]まる。</p>
+<span class="spoiler"><i>« Se réunir à 7h.»</i></span>
+
+<h4>Indique la direction/le but de l'action</h4>
+<p>京都[きょうと]<u style="color: red;">に</u>着[つ]く。買[か]い物[もの]に行[い]く。</p>
+<span class="spoiler"><i>« Arriver à Kyôto." ou "Aller qqpart (pour) faire les courses.»</i></span>
+
+<h4>Indiquer la cible d'une action</h4>
+<p>妹[いもうと]<u style="color: red;">に</u>おかしを上[あ]げる。</p>
+<span class="spoiler"><i>« Donner des bonbons à ma petite sœur.»</i></span>
+
+<h4>Indiquer la raison (souvent un sentiment)</h4>
+<p>うれしさ<u style="color: red;">に</u>手[て]を叩[たた]く。</p>
+<span class="spoiler"><i>« Frapper des mains de joie.»</i></span>
+
+<h4>Le point de comparaison</h4>
+<p>顔[かお]は弟[おとうと]<u style="color: red;">に</u>にている。</p>
+<span class="spoiler"><i>« Ton visage ressemble à celui de mon petit frère.»</i></span>
+
+<h4>Liste exhaustive. "Et", s'utilise comme と.</h4>
+<p>父[ちち]<u style="color: red;">に</u>母[はは]<u style="color: red;">に</u>姉[あね]の写真[しゃしん]だ。</p>
+<span class="spoiler"><i>« Une photo de mon père, ma mère et ma grande sœur.»</i></span>
+
+<h4>Met l'accent sur l'intensité du verbe</h4>
+<p>考[かんが]え<u style="color: red;">に</u>考[かんが]えた。</p>
+<span class="spoiler"><i>« J'ai longtemps/bien réfléchi.»</i></span>
+
+<h4>（<b style="color: red;">～でしょうに</b>）Indique un léger mécontentement </h4>
+<p>急[いそ]がなくてもよい<u style="color: red;">でしょうに</u>。</p>
+<span class="spoiler"><i>« On n'avait pas besoin de se presser pourtant...»</i></span>
+
+<br>
+<hr>
+<p><b>Source</b> : 『三省堂8』『例解学習11』 『新明解8』 『明鏡3』</p> 
+<p> 『A dictionary of Japanese Grammar』 『(Kodansha) How to tell the difference between Japanese Particles.』</p>
+
+<style>
+.tti {
+  position: relative;
+  cursor: pointer;
+  
+  text-decoration: underline;
+  color:rgb(28, 122, 156);
+}
+
+.tti::after {
+  content: attr(dt);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+ word-wrap: break-word;
+  white-space: normal;
+  display: none;
+  z-index: 10;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.ttis::after {
+    min-width: auto;
+    max-width: none;
+}
+
+.tti:hover::after {
+  display: block;
+}
+</style>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>
