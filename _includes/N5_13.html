@@ -1,0 +1,154 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+    </style>
+
+<p>A : これ、見て<span class="tti" dt="Regarde stp">ください</span>。スイスの写真[しゃしん]です。</p>
+<p>B : わー、雪[ゆき]がきれい。アルプスですね！</p>
+
+<hr>
+
+<p>A : 山田[やまだ]さんの部屋[へや]は新[あたら]しいですか</p>
+<p>B : いえ、古[ふる]いです。<span class="tti" dt="Mais">でも</span>、きれいですよ。</p>
+
+<hr>
+
+<p>A : どこ行[い]く<span class="tti" dt="contraction de の. Demande d'explication">ん</span>ですか？</p>
+<p>B : ちょっと、コンビニにお弁当[べんとう]を<span class="tti" dt="買う : Acheter ; 買いに行く : Aller acheter ; 買いに行ってくる : Aller acheter puis revenir.">買[か]いに行[い]ってきます</span>。</p>
+
+<hr>
+
+<p>A : 田中[たなか]さんの部屋[へや]はきれいですか？</p>
+<p>B : いえ、きれいじゃありません。でも新[あたら]しいです。</p>
+
+<hr>
+
+<p>A : 映画[えいが]、どうでしたか？</p>
+<p>B : <span class="tti" dt="'Hmm (je réfléchis)">うーん</span>、まあまあでした。</p>
+
+<hr>
+
+<p>A : ねー、一緒[いっしょ]にお昼[ひる]<span class="tti" dt="Ici, 食べない？ indique une invitation. 'Tu manges (avec nous) ?'.">食[た]べない</span>？</p>
+<p>B : うん、<span class="tti" dt="(A CONNAITRE) D'accord ; J'accepte。">いいよ</span>。あ、でも、食[た]べる<span class="tti" dt="Verbe + 前に : Avant de V">前[まえ]に</span>ちょっと友達[ともだち]に電話[でんわ]してもいい？</p>
+
+<hr>
+
+<p>A : <span class="tti" dt="Déjà">もう</span>、<span class="tti" dt="Contraction de 昼ごはん : Le déjeuner.">お昼</span>食[た]べましたか？</p>
+<p>B : いいえ、<span class="tti" dt="Pas encore">まだ</span>です。山田[やまだ]さんは？</p>
+
+<hr>
+
+<p>A : 今晩[こんばん]、<span class="tti" dt="être libre">ひま</span>ですか？一緒[いっしょ]に焼肉[やきにく]はどうですか？</p>
+<p>B : すみません。私[わたし]、ベジタリアンなので、焼肉[やきにく]はちょっと。。。</p>
+
+<hr>
+
+<p>A : ずいぶん<span class="tti" dt="Adjectif + くなります : Devenir Adj. Ici, 'Devenir froid/commencer à faire froid'.">涼[すず]しくなりました</span>ね。</p>
+<p>B : そうですね。</p>
+
+<br>
+<hr>
+<p>Source : 新・シャドーイング　日本語を話そう！初・中級</p>
+
+<style>
+.tti {
+  position: relative;
+  cursor: pointer;
+  
+  text-decoration: underline;
+  color:rgb(28, 122, 156);
+}
+
+.tti::after {
+  content: attr(dt);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+ word-wrap: break-word;
+  white-space: normal;
+  display: none;
+  z-index: 10;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.ttis::after {
+    min-width: auto;
+    max-width: none;
+}
+
+.tti:hover::after {
+  display: block;
+}
+</style>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>

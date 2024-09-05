@@ -1,0 +1,150 @@
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.1em;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+        ruby {
+            font-size: 1.1em;
+        }
+
+        h3 {
+ border-left-width: 4px;
+ border-top-width: 0px;
+ border-bottom-width: 0px;
+ border-right-width: 0px;
+  border-style: solid;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  --tw-border-opacity: 1;
+  border-color: rgb(191, 219, 11/var(--tw-border-opacity));
+  font-size: 1.155rem;
+  line-height: 1.75rem;
+  padding-left: .5rem;
+}
+    </style>
+
+<img src="https://pbs.twimg.com/media/GVbmCKHaMAEbtaN?format=jpg&name=4096x4096" alt="Page 1" style="width:auto; height:550px;">
+
+<a href="https://dokusha.io/share/df01db05254c8994072163916d4d69bf202d49ea4b13dd211227682f182dc5e2/1409-tian-shi-tojie-jin-zhong">Lecture en ligne</a>
+
+<h3>Page 1:</h3>
+<p>ま、僕は昨日初恋の人に嫌われた<span class="tti" dt="Ici, わけです met l'accent sur une info que l'interlocuteur n'est pas censée connaître.">わけです</span>けど。</p>
+
+<h3>Page 3: Texte écrit sur la feuille</h3>
+<p>・今日の台本</p>
+<p>スキンシップ<span class="tti" dt="で du moyen.">で</span>ドキッと<span class="tti" dt="(conjugaison) Forme factitive de する. ドキッとする＝ Avoir le coeur qui palpite (d'amour) ; ドキッとさせる : Faire que le coeur de qqn palpite.">させる</span>♡</p>
+<p>・やること</p>
+<p>⓵目隠しをして「だーれだ♡」をする。</p>
+<p>⓶耳元で「好きな動物」を<span class="tti" dt="Ici, signifie 'Demander'.">聞く</span>♡</p>
+<p>将来の為</p>
+
+<h3>Page 6 : Le cadre en bas à gauche</h3>
+<p>やりたかった<span class="tti" dt="Un truc/Une chose. Ici, 'Le truc qu'elle voulait faire.'">やつ</span></p>
+
+<h3>Page 11</h3>
+<p>これさすがに<span class="tti" dt="Signifie 'être repoussé/dégoûté par qqn'.">引かれた</span>！！</p>
+
+<h3>Page 13</h3>
+<p>でも<span class="tti" dt="Indique qu'il va continuer de parler, mais qu'il cherche ses mots">さ</span>。。。目を見て話してくれた<span class="tti" dt="Conditionnel. 'Si...'">なら</span>、<span class="tti" dt="Contraction de ギリギリ. Ici, 'Elle me déteste à peine/Elle me déteste quasi pas'">ギリ</span>嫌われてない<span class="tti" dt="Le protagoniste cherche l'assentiment. 'Pas vrai hein ?'.">よな</span>？</p>
+<p>やはりとことん<span class="tti" dt="Ici, signifie 'être lent à la détente'. Souvent utilisé dans les romances pour dire qu'un gars comprend pas qu'il est aimé.">鈍かった</span></p>
+
+<p>On se retrouve bientôt pour le chapitre 3 !</p>
+
+<style>
+.tti {
+  position: relative;
+  cursor: pointer;
+  
+  text-decoration: underline;
+  color:rgb(28, 122, 156);
+}
+
+.tti::after {
+  content: attr(dt);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+ word-wrap: break-word;
+  white-space: normal;
+  display: none;
+  z-index: 10;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.ttis::after {
+    min-width: auto;
+    max-width: none;
+}
+
+.tti:hover::after {
+  display: block;
+}
+</style>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>

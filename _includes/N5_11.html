@@ -1,0 +1,173 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+    </style>
+
+
+<p>A : 初[はじ]めまして。渡辺[わたなべ]です。</p>
+<p>B : 田中[たなか]です。どうぞよろしく。</p>
+<hr>
+
+<p>A : マイケルさんですか？</p>
+<p>B : はい、そうです。</p>
+<hr>
+
+<p>A : 田中さんですか？</p>
+<p>B : いいえ、田中です。</p>
+<hr>
+
+<p>A : 英語[えいご]のschoolは<span class="tti" dt="で du moyen. 'En japonais'. Ici 'Comment on dit X en japonais'.">日本語[にほんご]で</span>何[なん]ですか？</p>
+<p>B : schoolは学校[がっこう]ですよ。</p>
+<hr>
+
+<p>A : お名前[なまえ]は？</p>
+<p>B : ペドロです。</p>
+<p>A : お国は？</p>
+<p>B : スペインです。</p>
+<hr>
+
+<p>A : ホットコーヒーのＭ、<span class="tti" dt="Le つ est un compteur qui indique le genre de chose qu'on compte.">一[ひと]つ</span>ください。</p>
+<p>B : はい、ホットコーヒーのＭですね。</p>
+<hr>
+
+<p>A : どんな映画[えいが]を見[み]ますか？</p>
+<p>B : コメディーを<span class="tti" dt="Souvent">よく</span>見[み]ますね。</p>
+<hr>
+
+<p>A : 日本[にほん]のアニメはどうですか？</p>
+<p>B : ストーリーがとてもいいと思[おも]います。</p>
+<hr>
+
+<p>A : これ、見[み]てください。スイスの写真[しゃしん]です。</p>
+<p>B : わー、雪[ゆき]がきれい。アルプスですね！</p>
+
+<hr>
+<p>A : クリスさんの国[くに]は、今[いま]とても寒[さむ]い<span class="tti" dt="N'est-ce pas ?">でしょう</span>？何度[なんど]<span class="tti" dt="Environ">くらい</span>ですか？</p>
+<p>B : そうですね、私[わたし]の町[まち]は<span class="tti" dt="Vers le nord">北[きた]のほう</span>なので、マイナス１０度[ど]くらいです。</p>
+
+<hr>
+<p>A : ご家族[かぞく]は何[なん]人[にん]ですか？</p>
+<p>B : 四人[よにん]です。両親[りょうしん]と兄[あに]と私[わたし]です。</p>
+
+<hr>
+<p>A : 先生[せんせい]、すみません。トイレに行[い]っ<span class="tti" dt="V +てもいい : Demande de permission. 'Est-ce que vous m'autorisez à...'.">てもいい</span>ですか？</p>
+<p>B : はい、どうぞ。</p>
+
+<hr>
+<p>A : ジョンさん、今日[きょう]、どこ<span class="tti" dt="で du lieu d'action.">で</span>*<span class="tti" dt="Contraction de お昼ごはん : Déjeuner">お昼[ひる]</span>を食[た]べますか？</p>
+<p>B : そうですねー。どこ<span class="tti" dt="にする : décider/choisir. 'On fait ça où ?'">にしましょう</span>か。</p>
+
+<hr>
+<p>A : 先生[せんせい]、すみません。今[いま]、何時[なんじ]ですか？</p>
+<p>B : あ、<span class="tti" dt="'Ah il est déjà l'heure !'">もう時間[じかん]</span>ですね。じゃ、<span class="tti" dt="で de la limite. 'On s'arrête là'.">これで</span>終[お]わりましょう。</p>
+<hr>
+<p>A : サラさんは<span class="tti" dt="Avoir une belle écriture">字[じ]が綺麗[きれい]</span>ですね。</p>
+<p>B : ありがとうございます。毎日[まいにち]練習[れんしゅう]しています。</p>
+
+
+<br>
+<hr>
+<p>Source : 新・シャドーイング　日本語を話そう！初・中級</p>
+
+<style>
+.tti {
+  position: relative;
+  cursor: pointer;
+  
+  text-decoration: underline;
+  color:rgb(28, 122, 156);
+}
+
+.tti::after {
+  content: attr(dt);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+ word-wrap: break-word;
+  white-space: normal;
+  display: none;
+  z-index: 10;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.ttis::after {
+    min-width: auto;
+    max-width: none;
+}
+
+.tti:hover::after {
+  display: block;
+}
+</style>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>

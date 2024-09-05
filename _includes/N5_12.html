@@ -1,0 +1,150 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+   <style>
+        p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        } 
+        body {
+            font-family: "Noto Serif JP";
+          
+        }
+    </style>
+
+<p>A : その<ruby>赤<rt>あか</rt></ruby>いバラを<ruby>三<rt>さん</rt></ruby><span class="tti" dt="Ici, 本 est un compteur d'objets oblongs。">３<ruby>本<rt>ぼん</rt></ruby></span>ください。</p>
+<p>B : はい、<ruby>赤<rt>あか</rt></ruby>いバラ３<ruby>本<rt>ぼん</rt></ruby>ですね。</p>
+
+<hr>
+
+<p>A : <ruby>日本語<rt>にほんご</rt></ruby>の<ruby>漢字<rt>かんじ</rt></ruby>はどうですか？</p>
+<p>B : <ruby>難<rt>むずか</rt></ruby>しいです<span class="tti" dt="Mais">が</span>、<ruby>漢字<rt>かんじ</rt></ruby>の<ruby>勉強<rt>べんきょう</rt></ruby>は<ruby>面白<rt>おもしろ</rt></ruby>いです。</p>
+
+<hr>
+
+<p>A : <ruby>日本語<rt>にほんご</rt></ruby>の<ruby>漢字<rt>かんじ</rt></ruby>はどうですか、<ruby>初<rt>はじ</rt></ruby>めてですか？</p>
+<p>B : いいえ、<span class="tti" dt="三回 = 3 fois ; 三回目 = La 3ème fois">三回目<ruby>さんかいめ</rt></ruby></span>です。</p>
+
+<hr>
+
+<p>A : わー、<span class="tti" dt="ça a l'air bon">おいしそう</span>。それなんですか？</p>
+<p>B : これ？<ruby>中国<rt>ちゅうごく</rt></ruby>の<ruby>お菓子<rt>かし</rt></ruby>です。<ruby>一<rt>ひと</rt></ruby>つどうですか？</p>
+
+<hr>
+
+<p>A : どんなゲームが<ruby>好<rt>す</rt></ruby>き？</p>
+<p>B : <ruby>一番<rt>いちばん</rt></ruby><ruby>好<rt>す</rt></ruby>きな<span class="tti" dt="Ici, le の = ゲーム。Il empêche la répétition de ゲーム。">の</span>はＲＰＧ（アールピージー）<span class="tti" dt="Je suis pas sûr, mais...">かな</span>。</p>
+
+<hr>
+
+<p>A : <ruby>今度<rt>こんど</rt></ruby>の<ruby>休<rt>やす</rt></ruby>み、どこ<ruby>行<rt>い</rt></ruby>く<span class="tti" dt="Equivalent familier de か pour poser une question">の</span>？</p>
+<p>B : <ruby>友<rt>とも</rt></ruby>だちと<ruby>海<rt>うみ</rt></ruby>に<ruby>行<rt>い</rt></ruby>きます。</p>
+
+<hr>
+
+<p>A : <ruby>昨日<rt>きのう</rt></ruby>、スマホを<ruby>買<rt>か</rt></ruby>いました。</p>
+<p>B : へー、どこ<span class="tti" dt="で du lieu d'action">で</span><ruby>買<rt>か</rt></ruby>いましたか？</p>
+
+<hr>
+
+<p>A : ジョンさんの<span class="tti" dt="うち = 家 = Maison">うち</span>はどこですか？</p>
+<p>B : <ruby>新宿<rt>しんじゅく</rt></ruby>です。<ruby>学校<rt>がっこう</rt></ruby><span class="tti" dt="Près de">の<ruby>近<rt>ちか</rt></ruby>く</span>です。</p>
+
+
+<br>
+<hr>
+<p>Source : 新・シャドーイング　日本語を話そう！初・中級</p>
+
+<style>
+.tti {
+  position: relative;
+  cursor: pointer;
+  
+  text-decoration: underline;
+  color:rgb(28, 122, 156);
+}
+
+.tti::after {
+  content: attr(dt);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%; /* Position below the text */
+  left: 50%;
+ word-wrap: break-word;
+  white-space: normal;
+  display: none;
+  z-index: 10;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.ttis::after {
+    min-width: auto;
+    max-width: none;
+}
+
+.tti:hover::after {
+  display: block;
+}
+</style>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js" charset="UTF-8"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT,   {
+                acceptNode: function (node) {
+                return node.parentNode.nodeName != "SCRIPT" ? NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+                },
+            },false);
+
+            let node;
+            const textNodes = [];
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+                console.log(node.nodeValue);   
+            }
+
+            const segmenter = new TinySegmenter();   
+            for(const node of textNodes)
+            {
+                const segs = segmenter.segment(node.nodeValue);
+                console.log((segs.join(" | ")));
+                const newText = segs.reduce((acc, curr, i, arr) => {
+                    const prev_token = (i > 0) ? arr[i-1]:"";
+                    if(curr == '[')
+                    {
+                        acc += `<ruby>${prev_token}<rt>`;
+                    }
+                    else if(prev_token == '[')
+                    {
+                        /* We do nothing */
+                    } 
+                    else if(curr == ']')
+                    {
+                        acc += `${prev_token}</rt></ruby>`;
+                    }
+                    else if(i == arr.length - 1){
+                        acc += ((prev_token!=']')?prev_token:"") + curr ;
+                    } 
+                    else {
+                        acc += ((prev_token!=']')?prev_token:"");
+                    }
+                    return acc;
+
+                }, "");
+
+                if(newText != node.nodeValue)
+                {
+                    let span = document.createElement('span');
+                    span.innerHTML = newText;
+
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+</script>
